@@ -1,8 +1,10 @@
 from flask import Flask, send_file, request
 from gtts import gTTS
 import os
-
+from urllib.parse import unquote_plus as decode
 from markupsafe import escape
+
+
 app = Flask(__name__)
 static = os.getcwd()+'\\static\\'
 
@@ -25,12 +27,12 @@ def hello():
 
 @app.route('/tts/<words>')
 def tts(words):
-    return send_file(stringToAudioFile(words))
+    return send_file(decode(stringToAudioFile(words)))
 
     
 @app.route('/tts')
 def ttsByArg():
-    text = request.args.get('t')
+    text = decode(request.args.get('t'))
     return send_file(stringToAudioFile(text))
 
 if __name__ == '__main__':
