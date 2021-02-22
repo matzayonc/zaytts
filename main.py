@@ -27,9 +27,10 @@ def hello():
 
 @app.route('/tts/<words>')
 def tts(words):
-    return send_file(decode(stringToAudioFile(words)))
+    text = decode(words)
+    return send_file(stringToAudioFile(text))
 
-    
+
 @app.route('/tts')
 def ttsByArg():
     text = decode(request.args.get('t'))
