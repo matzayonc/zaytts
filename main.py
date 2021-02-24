@@ -5,6 +5,8 @@ from urllib.parse import unquote_plus as decode
 from markupsafe import escape
 
 
+
+
 app = Flask(__name__)
 static = os.getcwd()+'\\static\\'
 
@@ -15,7 +17,7 @@ def stringToAudioFile(line):
     global counter
     counter += 1
     filename = static + 'tts' + str(counter) + '.mp3'
-    tts = gTTS(text=line, lang='en')
+    tts = gTTS(text=line, lang='pl')
     tts.save(filename)
     return filename
 
